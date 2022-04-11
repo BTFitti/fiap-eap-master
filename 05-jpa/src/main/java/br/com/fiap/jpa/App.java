@@ -6,9 +6,11 @@ import br.com.fiap.jpa.entity.Aluno;
 import br.com.fiap.jpa.entity.Curso;
 import br.com.fiap.jpa.entity.Disciplina;
 import br.com.fiap.jpa.entity.Endereco;
+import br.com.fiap.jpa.entity.Matricula;
 import br.com.fiap.jpa.service.impl.AlunoServiceImpl;
 import br.com.fiap.jpa.service.impl.CursoServiceImpl;
 import br.com.fiap.jpa.service.impl.DisciplinaServiceImpl;
+import br.com.fiap.jpa.service.impl.MatriculaServiceImpl;
 
 public class App {
 
@@ -16,6 +18,7 @@ public class App {
 		AlunoServiceImpl alunoService = AlunoServiceImpl.getInstance();
 		DisciplinaServiceImpl disciplinaService = DisciplinaServiceImpl.getInstance();
 		CursoServiceImpl cursoService = CursoServiceImpl.getInstance();
+		MatriculaServiceImpl matriculaService = MatriculaServiceImpl.getInstance();
 
 		Aluno aluno3 = new Aluno("Aluno3", "33333", "333.333.333-33", LocalDate.of(1980, 1, 1));
 		alunoService.inserir(new Aluno("Aluno1", "11111", "111.111.111-11", LocalDate.of(1980, 1, 1)));
@@ -38,6 +41,12 @@ public class App {
 		disciplinaService.inserir(disciplina);
 		disciplinaService.listar().forEach(System.out::println);
 		
-		alunoService.matricular(aluno.getId(),curso.getId());
+		//alunoService.matricular(aluno.getId(),curso.getId());
+		
+		Matricula matricula = new Matricula();
+		matricula.setAluno(aluno3);
+		matricula.setCurso(curso);
+		matricula.setDataMatricula(LocalDate.now());
+		matriculaService.inserir(matricula);
 	}
 }

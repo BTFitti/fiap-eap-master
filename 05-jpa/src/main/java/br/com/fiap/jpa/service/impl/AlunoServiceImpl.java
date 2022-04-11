@@ -30,37 +30,37 @@ public class AlunoServiceImpl extends GenericService<Aluno, Long> {
 		}
 		return instance;
 	}
-
-	public void matricular(Long idAluno, Long idCurso) {
-		try {
-			Aluno aluno = alunoDAO.obterPorId(idAluno, getEntityManager());
-			Curso curso = cursoDAO.obterPorId(idCurso, getEntityManager());
-			List<Curso> cursos = aluno.getCursos();
-			if(cursos == null){
-				cursos = new ArrayList<Curso>();
-			}else {
-				boolean jaMatriculado = false;
-				for (Curso cursoDB: cursos) {
-					if(cursoDB.getId().equals(idCurso)) {
-						jaMatriculado = true;
-						break;
-					}
-				}
-				if (!jaMatriculado) {
-					cursos.add(curso);
-					aluno.setCursos(cursos);
-					alunoDAO.atualizar(aluno, getEntityManager());
-				}
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			getEntityManager().getTransaction().rollback();
-		} finally {
-			closeEntityManager();
-		}
-
-	}
+//
+//	public void matricular(Long idAluno, Long idCurso) {
+//		try {
+//			Aluno aluno = alunoDAO.obterPorId(idAluno, getEntityManager());
+//			Curso curso = cursoDAO.obterPorId(idCurso, getEntityManager());
+//			List<Curso> cursos = aluno.getCursos();
+//			if(cursos == null){
+//				cursos = new ArrayList<Curso>();
+//			}else {
+//				boolean jaMatriculado = false;
+//				for (Curso cursoDB: cursos) {
+//					if(cursoDB.getId().equals(idCurso)) {
+//						jaMatriculado = true;
+//						break;
+//					}
+//				}
+//				if (!jaMatriculado) {
+//					cursos.add(curso);
+//					aluno.setCursos(cursos);
+//					alunoDAO.atualizar(aluno, getEntityManager());
+//				}
+//				
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			getEntityManager().getTransaction().rollback();
+//		} finally {
+//			closeEntityManager();
+//		}
+//
+//	}
 
 	@Override
 	public void inserir(Aluno instance) {

@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
@@ -74,20 +75,31 @@ public class Aluno implements Serializable {
 		return endereco;
 	}
 	
-	@ManyToMany
-	@JoinTable(
-			name = "tb_aluno_curso",
-			joinColumns = @JoinColumn(name="aluno_id"),
-			inverseJoinColumns = @JoinColumn(name = "curso_id")
-		)	
-	private List<Curso> cursos;
+	@OneToMany(mappedBy= "aluno")
+	private List<Matricula> matriculas;
+	
+//	@ManyToMany
+//	@JoinTable(
+//			name = "tb_aluno_curso",
+//			joinColumns = @JoinColumn(name="aluno_id"),
+//			inverseJoinColumns = @JoinColumn(name = "curso_id")
+//		)	
+//	private List<Curso> cursos;
+//
+//	public List<Curso> getCursos() {
+//		return cursos;
+//	}
+//
+//	public void setCursos(List<Curso> cursos) {
+//		this.cursos = cursos;
+//	}
 
-	public List<Curso> getCursos() {
-		return cursos;
+	public List<Matricula> getMatriculas() {
+		return matriculas;
 	}
 
-	public void setCursos(List<Curso> cursos) {
-		this.cursos = cursos;
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
 	}
 
 	public void setEndereco(Endereco endereco) {

@@ -53,16 +53,16 @@ public class Curso implements Serializable {
 	@OneToMany(mappedBy = "curso", fetch = FetchType.EAGER)
 	private List<Disciplina> disciplinas;
 	
-	@ManyToMany(mappedBy = "cursos")
-	private List<Aluno> alunos;
-  
-	public List<Aluno> getAlunos() {
-		return alunos;
-	}
-
-	public void setAlunos(List<Aluno> alunos) {
-		this.alunos = alunos;
-	}
+//	@ManyToMany(mappedBy = "cursos")
+//	private List<Aluno> alunos;
+//  
+//	public List<Aluno> getAlunos() {
+//		return alunos;
+//	}
+//
+//	public void setAlunos(List<Aluno> alunos) {
+//		this.alunos = alunos;
+//	}
 
 	public List<Disciplina> getDisciplinas() {
 		return disciplinas;
